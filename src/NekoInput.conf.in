@@ -1,0 +1,10 @@
+[Addon]
+Name=NekoInput
+Type=SharedLibrary
+Library=libNekoInput
+Category=Module
+Version=@Fcitx5Core_VERSION@
+OnDemand=False
+
+[Addon/Dependencies]
+0=core:@Fcitx5Core_VERSION@
