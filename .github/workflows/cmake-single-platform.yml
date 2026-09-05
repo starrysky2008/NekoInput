@@ -21,6 +21,21 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Update cmake
+      run: apt update & apt install cmake
+
+    - name: Download xcb
+      run: git clone https://github.com/fcitx/xcb-imdkit.git
+
+    - name: build and install xcb
+      run: cmake -S xcb-imdkit -B build_xcb & cmake --build build_xcb & cmake --install build_xcb
+
+    - name: Download fcitx5
+      run: git clone https://github.com/fcitx/fcitx5.git --recursive
+
+    - name: build and install fcitx5
+      run: cmake -DENABLE_WAYLAND=Off -DENABLE_ENCHANT=Off -S fcitx5 -B build & cmake --build build & cmake --install build
+
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
