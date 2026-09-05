@@ -25,7 +25,8 @@ std::string NekoInput::transmitString(const std::string &text) {
     }
     const auto suffixs = {"？", "！", "，", "。", "；", "：", "”", "）"};
     for (std::string suffix : suffixs) {
-        if (ret.ends_with(suffix)) {
+        if (ret.size() >= suffix.size() &&
+            ret.compare(ret.size() - suffix.size(), suffix.size(), suffix) == 0) {
             ret.insert(ret.size() - suffix.size(), "喵");
             break;
         }
